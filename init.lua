@@ -36,6 +36,10 @@ vim.schedule(function()
     require "mappings"
 end)
 
+vim.g.markdown_fenced_languages = {
+    "ts=typescript",
+}
+
 -- vim.filetype.add {
 --     extension = {
 --         zm = "zoomba",
