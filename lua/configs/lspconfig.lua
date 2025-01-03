@@ -4,7 +4,7 @@ require("nvchad.configs.lspconfig").defaults()
 local lspconfig = require "lspconfig"
 
 -- EXAMPLE
-local servers = { "pyright", "rust_analyzer", "bashls", "gopls" }
+local servers = { "pyright", "rust_analyzer", "bashls", "gopls", "ts_ls" }
 local nvlsp = require "nvchad.configs.lspconfig"
 
 -- lsps with default config
