@@ -24,9 +24,9 @@ lspconfig.clangd.setup {
     },
 }
 
--- require("java").setup()
--- lspconfig.jdtls.setup {
---     on_attach = nvlsp.on_attach,
---     on_init = nvlsp.on_init,
---     capabilities = nvlsp.capabilities,
--- }
+require("java").setup()
+lspconfig.jdtls.setup {
+    on_attach = nvlsp.on_attach,
+    on_init = nvlsp.on_init,
+    capabilities = nvlsp.capabilities,
+}

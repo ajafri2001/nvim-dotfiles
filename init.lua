@@ -40,17 +40,17 @@ vim.g.markdown_fenced_languages = {
     "ts=typescript",
 }
 
--- vim.filetype.add {
---     extension = {
---         zm = "zoomba",
---     },
--- }
---
--- vim.api.nvim_create_autocmd("FileType", {
---     pattern = "scala",
---     callback = function()
---         vim.opt_local.expandtab = true
---         vim.opt_local.shiftwidth = 4
---         vim.opt_local.tabstop = 4
---     end,
--- })
+vim.filetype.add {
+    extension = {
+        zm = "zoomba",
+    },
+}
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "scala",
+    callback = function()
+        vim.opt_local.expandtab = true
+        vim.opt_local.shiftwidth = 4
+        vim.opt_local.tabstop = 4
+    end,
+})
