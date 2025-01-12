@@ -5,6 +5,15 @@ return {
         opts = require "configs.conform",
     },
     {
+        "lervag/vimtex",
+        lazy = false, -- we don't want to lazy load VimTeX
+        -- tag = "v2.15", -- uncomment to pin to a specific release
+        init = function()
+            -- VimTeX configuration goes here, e.g.
+            vim.g.vimtex_view_method = "zathura"
+        end,
+    },
+    {
         "sphamba/smear-cursor.nvim",
         opts = {},
         lazy = false,
@@ -15,16 +24,6 @@ return {
         config = function()
             require "configs.lspconfig"
         end,
-    },
-    {
-        "realprogrammersusevim/md-to-html.nvim",
-        cmd = { "MarkdownToHTML", "NewMarkdownToHTML" },
-    },
-    {
-        "MeanderingProgrammer/render-markdown.nvim",
-        dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
-        ---@module 'render-markdown'
-        opts = {},
     },
     {
         "glepnir/template.nvim",
@@ -118,23 +117,6 @@ return {
         end,
     },
     {
-        "lervag/vimtex",
-        lazy = false, -- we don't want to lazy load VimTeX
-        -- tag = "v2.15", -- uncomment to pin to a specific release
-        init = function()
-            -- VimTeX configuration goes here, e.g.
-            vim.g.vimtex_view_method = "zathura"
-        end,
-    },
-    {
-        "MeanderingProgrammer/render-markdown.nvim",
-        dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
-        -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-        -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-        ---@module 'render-markdown'
-        opts = {},
-    },
-    {
         "mfussenegger/nvim-dap", -- Make sure nvim-dap is installed first
     },
     {
@@ -149,10 +131,5 @@ return {
             "neovim/nvim-lspconfig",
             "mfussenegger/nvim-dap",
         },
-    },
-    {
-        "mrcjkb/haskell-tools.nvim",
-        version = "^4", -- Recommended
-        lazy = false, -- This plugin is already lazy
     },
 }

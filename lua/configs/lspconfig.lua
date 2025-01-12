@@ -22,6 +22,9 @@ lspconfig.clangd.setup {
         "clangd",
         "--fallback-style=webkit",
     },
+    on_attach = nvlsp.on_attach,
+    on_init = nvlsp.on_init,
+    capabilities = nvlsp.capabilities,
 }
 
 require("java").setup()

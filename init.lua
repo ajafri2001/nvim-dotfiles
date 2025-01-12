@@ -54,3 +54,8 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt_local.tabstop = 4
     end,
 })
+
+--===================================================== VIM-TEX-CONF====================
+
+vim.g.vimtex_view_method = "zathura"
+vim.g.vimtex_compiler_method = "tectonic"
