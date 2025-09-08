@@ -4,7 +4,7 @@ require("nvchad.configs.lspconfig").defaults()
 local lspconfig = require "lspconfig"
 
 -- EXAMPLE
-local servers = { "pyright", "rust_analyzer", "bashls", "gopls", "denols" }
+local servers = { "pyright", "rust_analyzer", "bashls", "gopls", "ts_ls", "ocamllsp", "purescriptls", "zls" }
 local nvlsp = require "nvchad.configs.lspconfig"
 
 -- lsps with default config
@@ -27,9 +27,9 @@ lspconfig.clangd.setup {
     capabilities = nvlsp.capabilities,
 }
 
-require("java").setup()
-lspconfig.jdtls.setup {
-    on_attach = nvlsp.on_attach,
-    on_init = nvlsp.on_init,
-    capabilities = nvlsp.capabilities,
-}
+-- require("java").setup()
+-- lspconfig.jdtls.setup {
+--     on_attach = nvlsp.on_attach,
+--     on_init = nvlsp.on_init,
+--     capabilities = nvlsp.capabilities,
+-- }

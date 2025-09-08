@@ -59,9 +59,6 @@ return {
     },
     {
         "scalameta/nvim-metals",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
         ft = { "scala", "sbt" },
         opts = function()
             local nvlsp = require "nvchad.configs.lspconfig"
@@ -70,6 +67,10 @@ return {
             metals_config.on_attach = nvlsp.on_attach
             metals_config.on_init = nvlsp.on_init
             metals_config.capabilities = nvlsp.capabilities
+
+            metals_config.settings = {
+                defaultBspToBuildTool = true,
+            }
 
             return metals_config
         end,
@@ -86,6 +87,7 @@ return {
     },
     {
         "williamboman/mason.nvim",
+        version = "^1.0.0",
         opts = {
             registries = {
                 "github:nvim-java/mason-registry",
@@ -93,6 +95,11 @@ return {
             },
         },
     },
+    {
+        "williamboman/mason-lspconfig.nvim",
+        version = "^1.0.0",
+    },
+
     {
         "hrsh7th/nvim-cmp",
         opts = function()

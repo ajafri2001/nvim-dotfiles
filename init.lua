@@ -40,20 +40,25 @@ vim.g.markdown_fenced_languages = {
     "ts=typescript",
 }
 
-vim.filetype.add {
-    extension = {
-        zm = "zoomba",
-    },
-}
+-- vim.filetype.add {
+--     extension = {
+--         zm = "zoomba",
+--     },
+--     pattern = {
+--         [".*%.scala%.html"] = "scala",
+--     },
+-- }
 
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "scala",
-    callback = function()
-        vim.opt_local.expandtab = true
-        vim.opt_local.shiftwidth = 4
-        vim.opt_local.tabstop = 4
-    end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--     pattern = "scala",
+--     callback = function()
+--         vim.opt_local.expandtab = true
+--         vim.opt_local.shiftwidth = 4
+--         vim.opt_local.tabstop = 4
+--     end,
+-- })
+
+vim.api.nvim_set_hl(0, "Visual", { bg = "#4b5563" })
 
 --===================================================== VIM-TEX-CONF====================
 
