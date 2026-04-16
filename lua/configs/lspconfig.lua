@@ -1,4 +1,7 @@
 -- load defaults i.e lua_lsp
+local notify_backup = vim.notify
+vim.notify = function(_, _, _) end
+
 require("nvchad.configs.lspconfig").defaults()
 
 local lspconfig = require "lspconfig"

@@ -64,17 +64,58 @@ return {
             local nvlsp = require "nvchad.configs.lspconfig"
             local metals_config = require("metals").bare_config()
 
-            metals_config.on_attach = nvlsp.on_attach
+            -- Wrap on_attach to add custom keymaps
+            local original_on_attach = nvlsp.on_attach
+            metals_config.on_attach = function(client, bufnr)
+                original_on_attach(client, bufnr)
+
+                local opts = { noremap = true, silent = true, buffer = bufnr }
+                local map = vim.keymap.set
+
+                -- Single-key: insert type annotation if available
+                map("n", "<leader>ca", function()
+                    local params = vim.lsp.util.make_range_params(0, "utf-8")
+                    vim.lsp.buf_request(bufnr, "textDocument/codeAction", params, function(err, result)
+                        if err then
+                            return
+                        end
+                        if not result or vim.tbl_isempty(result) then
+                            return
+                        end
+
+                        -- Look for Metals "Insert Type Annotation"
+                        for _, action in ipairs(result) do
+                            if action.title:match "Insert Type Annotation" then
+                                if action.edit or action.command then
+                                    vim.lsp.buf.execute_command(action.command or action)
+                                end
+                                return
+                            end
+                        end
+
+                        -- fallback: open code action menu if not found
+                        vim.lsp.buf.code_action()
+                    end)
+                end, opts)
+            end
+
             metals_config.on_init = nvlsp.on_init
             metals_config.capabilities = nvlsp.capabilities
 
             metals_config.settings = {
                 defaultBspToBuildTool = true,
+                showInferredType = true, -- relevant for type hints
             }
 
             return metals_config
         end,
         config = function(_, metals_config)
+            vim.filetype.add {
+                pattern = {
+                    [".*%.scala%.html"] = "scala",
+                },
+            }
+
             local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
             vim.api.nvim_create_autocmd("FileType", {
                 pattern = { "scala", "sbt" },
